@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager.HORIZONTAL
 import com.bumptech.glide.Glide
 import com.example.R
 import com.google.android.material.snackbar.Snackbar
@@ -25,7 +27,7 @@ class MainActivity : AppCompatActivity() {
             }.show()
         }
         initFruits()
-        recycler_view.layoutManager = GridLayoutManager(this, 2)
+        recycler_view.layoutManager = StaggeredGridLayoutManager(3, HORIZONTAL)
         recycler_view.adapter = fruitAdapter
         swipe_refresh.setColorSchemeResources(R.color.colorPrimary)
         swipe_refresh.setOnRefreshListener { this.refreshFruits() }
@@ -41,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initFruits() {
         fruitAdapter.clear()
-        for (i in 1..50) {
+        for (i in 1..3) {
             fruitAdapter.add(FruitItem(Fruit("苹果", R.drawable.apple)))
             fruitAdapter.add(FruitItem(Fruit("香蕉", R.drawable.banana)))
             fruitAdapter.add(FruitItem(Fruit("橙子", R.drawable.orange)))
